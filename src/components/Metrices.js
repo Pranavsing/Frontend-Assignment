@@ -1,14 +1,61 @@
-import React, { useState, useEffect, useRef } from "react";
-import { useParams, useHistory } from "react-router-dom";
-import { MimicLogs, MimicMetrics } from "../api/api-mimic";
-import { Line, Doughnut } from "react-chartjs-2";
+// import React, { useState, useEffect, useRef } from "react";
+// import { useParams, useHistory } from "react-router-dom";
+// import { Line, Doughnut } from "react-chartjs-2";
+// import Chart from "chart.js/auto";
+// function Metrices() {
+//   const [graphData, setGraphData] = useState([]);
+//   var time = new Date().getMilliseconds();
+//   time = time * 24 * 60 * 60 * 1000;
+//   console.log(time);
+//   const getAllGraphs = async () => {
+//     try {
+//       const response = await MimicMetrics.fetchMetrics(0, 67219200000);
+//       setGraphData(response);
+//     } catch (err) {
+//       console.log(err);
+//     }
+//   };
+//   useEffect(() => {
+//     getAllGraphs();
+//   }, []);
+
+//   // useEffect(() => {
+//   //   const interval = setInterval(() => {
+//   //     const newLabel = new Date().toLocaleTimeString();
+//   //     const newData = Math.floor(Math.random() * 100);
+//   //     setGraphData((prevData) => ({
+//   //       labels: [...prevData.labels, newLabel],
+//   //       datasets: [
+//   //         {
+//   //           ...prevData.datasets[0],
+//   //           data: [...prevData.datasets[0].data, newData],
+//   //         },
+//   //       ],
+//   //     }));
+//   //   }, 2000); // Update every 2 seconds
+//   //   return () => clearInterval(interval);
+//   // }, []);
+
+//   console.log(graphData);
+//   return (
+//
+//   );
+// }
+// export default Metrices;
+
+import React, { useState, useEffect } from "react";
 import Chart from "chart.js/auto";
-function Metrices() {
+import { Line } from "react-chartjs-2";
+import { MimicLogs, MimicMetrics } from "../api/api-mimic";
+
+const Metrices = () => {
   const [graphData, setGraphData] = useState([]);
-  const time = new Date().getMilliseconds();
+  var time = new Date().getMilliseconds();
+  time = time * 24 * 60 * 60 * 1000;
+  console.log(time);
   const getAllGraphs = async () => {
     try {
-      const response = await MimicMetrics.fetchMetrics(0, time);
+      const response = await MimicMetrics.fetchMetrics(100, 1200000);
       setGraphData(response);
     } catch (err) {
       console.log(err);
@@ -17,6 +64,7 @@ function Metrices() {
   useEffect(() => {
     getAllGraphs();
   }, []);
+  console.log(graphData);
   const allGraphs = [];
   if (graphData.length > 0) {
     graphData.map((value, key) => {
@@ -61,22 +109,38 @@ function Metrices() {
       allGraphs.push(data_last);
     });
   }
+
+  useEffect(() => {
+    const interval = setInterval(getAllGraphs, 2000); // Update every 2 seconds
+
+    return () => clearInterval(interval);
+  }, []);
+  console.log(allGraphs);
   return (
     <div>
-      <div style={{ width: "50%" }}>
+      <div style={{ width: "50%", display: "grid", gridTemplateColumns: 3 }}>
         {allGraphs.map((i, j) => {
           return (
             <Line
-              // width="50%"
-              // height="50%"
+              width="50%"
+              height="50%"
               datasetIdKey={j.toString()}
               data={i}
             />
           );
         })}
+        {/* <div>
+          <Line width="50%" height="50%" datasetIdKey="0" data={allGraphs[0]} />
+          <Line width="50%" height="50%" datasetIdKey="1" data={allGraphs[1]} />
+        </div>
+        <div>
+          <Line width="50%" height="50%" datasetIdKey="2" data={allGraphs[2]} />
+          <Line width="50%" height="50%" datasetIdKey="3" data={allGraphs[3]} />
+        </div> */}
       </div>
-      <div>Hello</div>
+      {/* <div>Hello</div> */}
     </div>
   );
-}
+};
+
 export default Metrices;

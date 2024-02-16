@@ -1,21 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
-import { BrowserRouter as Router,Switch,Route } from 'react-router-dom';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import "./App.css";
 
-import Lelo from './components/Lelo'
-import Pelo from './components/Pelo';
-import Helo from './components/Helo';
-import Cnt from './components/Cnt';
-import Navbar from './components/Navbar';
-import Metrices from './components/Metrices';
+import Lelo from "./components/Lelo";
+import Pelo from "./components/Pelo";
+import Helo from "./components/Helo";
+import Cnt from "./components/Cnt";
+import Navbar from "./components/Navbar";
+import Metrices from "./components/Metrices";
+import Logs from "./components/Logs";
 export default function App() {
   return (
     <div className="App">
-      {/* <Helo></Helo>
-      <Cnt></Cnt> */}
-      <Navbar/>
-      <Metrices/>
+      <Navbar />
+      <Metrices />
+      {/* <Logs /> */}
     </div>
   );
 }
@@ -39,4 +39,3 @@ export default function App() {
 // };
 
 // export default App;
-
