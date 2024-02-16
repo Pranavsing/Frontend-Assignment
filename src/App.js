@@ -1,12 +1,5 @@
 import React from "react";
-import logo from "./logo.svg";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
-
-import Lelo from "./components/Lelo";
-import Pelo from "./components/Pelo";
-import Helo from "./components/Helo";
-import Cnt from "./components/Cnt";
 import Navbar from "./components/Navbar";
 import Metrices from "./components/Metrices";
 import Logs from "./components/Logs";

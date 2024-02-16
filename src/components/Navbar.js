@@ -1,8 +1,5 @@
-import React, { Component } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Metrices from "./Metrices";
-import Logs from "./Logs";
-import Days from "./Days";
+import React from "react";
+
 // import React from 'react'
 
 function Navbar() {
