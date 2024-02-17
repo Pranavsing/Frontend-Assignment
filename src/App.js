@@ -1,34 +1,20 @@
 import React from "react";
-import "./App.css";
 import Navbar from "./components/Navbar";
 import Metrices from "./components/Metrices";
 import Logs from "./components/Logs";
+import Storybook from "./components/Storybook";
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 export default function App() {
   return (
-    <div className="App">
-      <Navbar />
-      <Metrices />
-      {/* <Logs /> */}
-    </div>
+    <BrowserRouter>
+    <Navbar>
+    <Routes>
+         <Route path="/" />
+              <Route path="/metrices" element={<Metrices />} />
+              <Route path="/logs" element={<Logs />} />
+              <Route path="/storybook" element={<Storybook />} />
+          </Routes>
+    </Navbar>   
+</BrowserRouter>
   );
 }
-
-// export default App;
-
-// import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-// import Navbar from './Navbar';
-// import Metrices from './Metrices';
-
-// const App = () => {
-//   return (
-//     <Router>
-//       <Navbar />
-//       <Routes>
-//         <Route path="/metrics" element={<Metrices />} />
-//         {/* Add other routes here if needed */}
-//       </Routes>
-//     </Router>
-//   );
-// };
-
-// export default App;
